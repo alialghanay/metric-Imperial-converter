@@ -1,16 +1,35 @@
 doctype html
 html(lang="en")
   head
-    title= pageTitle
-    script(type='text/javascript').
-      if (foo) bar(1 + 5)
+    title Metric/Imperial Converter
+    meta(name='description', content='Home page')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/public/style.css')
   body
-    h1 Pug - node template engine
-    #container.col
-      if youAreUsingPug
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        Pug is a terse and simple templating language with a
-        strong focus on performance and powerful features.
+    header
+        h1 Metric/Imperial Converter
+    hr(style="margin: 50px")
+    section
+      h3 Example usage 
+      br
+      code /api/convert?input=4gal
+      br
+      code /api/convert?input=1/2km
+      br
+      code /api/convert?input=5.4/3lbs
+      br
+      code /api/convert?input=kg
+      h3 Example return
+      code { initNum: 3.1, initUnit: 'mi', returnNum: 4.98895, returnUnit: 'km', string: '3.1 miles converts to 4.98895 kilometers' }
+    hr(style="margin: 50px")
+    section
+        div#testui(bis_skin_checked="1")
+            h3(style="text-align: left") Front-End
+            form#convertForm(class="border")
+                input#convertField(type="text" name="input" placeholder="3.1mi" style="width: 200px")
+                input#convert(type="submit" value="Convert!")
+        p(id="result") 3.1 miles converts to 4.98895 kilometers
+        br
+        code(id="jsonResult") {"initNum":3.1,"initUnit":"mi","returnNum":4.98895,"returnUnit":"km","string":"3.1 miles converts to 4.98895 kilometers"}

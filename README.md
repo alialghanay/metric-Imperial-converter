@@ -7,3 +7,7 @@ this project useig:
 3. mocha
 4. pug
 5. socket.io
+
+git remote add origin https://github.com/alialghanay/metric-Imperial-converter.git
+git branch -M main
+git push -u origin main
