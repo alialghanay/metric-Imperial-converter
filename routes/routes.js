@@ -7,11 +7,15 @@ module.exports = (app) => {
       });
     app.route("/api/convert")
        .get((req, res) => {
-        let input = req.query.input;
-        if((input === undefined) || ( input.length === 0)) res.send("invalid input!");
-        else {
-          const out = convertHandler(input);
-          res.send(out)
-        };
+        const { input } = req.query;
+        let convertedValue = convertHandler(input);
+        if (typeof convertedValue === "string") res.send(convertedValue);
+        else res.json(convertedValue);
        })
+       
+       app.use(function(req, res, next) {
+        res.status(404)
+          .type('text')
+          .send('Not Found');
+      });
 }
