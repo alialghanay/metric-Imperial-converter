@@ -1,21 +1,18 @@
-const convertHandler = require('./convertHandler.js');
+'use strict';
+
+const expect = require('chai').expect;
+const ConvertHandler = require('../controllers/convertHandler.js');
+
 
 module.exports = (app) => {
-    app.route("/").get((req, res) => {
-        console.log("Hello Form Homepage");
-        res.render("index");
-      });
+    let convertHandler = new ConvertHandler();
     app.route("/api/convert")
        .get((req, res) => {
         const { input } = req.query;
-        let convertedValue = convertHandler(input);
-        if (typeof convertedValue === "string") res.send(convertedValue);
-        else res.json(convertedValue);
-       })
-       
-       app.use(function(req, res, next) {
-        res.status(404)
-          .type('text')
-          .send('Not Found');
-      });
-}
+      })
+    }
+    
+    // const { input } = req.query;
+    // let convertedValue = convertHandler(input);
+    // if (typeof convertedValue === "string") res.send(convertedValue);
+    // else res.json(convertedValue);

@@ -11,7 +11,6 @@ const cors        = require('cors');
 
 // signing variables
 const app = express();
-const port = process.env.PORT || 8080;
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 
@@ -27,23 +26,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("views", "./views/pug");
 app.set("view engine", "pug");
 
+app.route("/").get((req, res) => {
+  console.log("Hello Form Homepage");
+  res.render("index");
+});
+
 //For FCC testing purposes
-// fccTestingRoutes(app);
+fccTestingRoutes(app);
 
 //Routing for API
 routes(app);
 
+app.use(function(req, res, next) {
+  res.status(404)
+    .type('text')
+    .send('Not Found');
+});
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`app listening on Port -> ${port}`)
+    if(process.env.NODE_ENV==='test') {
+        console.log('Running Tests...');
+        setTimeout(function () {
+          try {
+            runner.run();
+          } catch(e) {
+              console.log('Tests are not valid:');
+              console.error(e);
+          }
+        }, 1500);
+      }
   });
-  // if(process.env.NODE_ENV==='test') {
-  //     console.log('Running Tests...');
-  //     setTimeout(function () {
-  //       try {
-  //         runner.run();
-  //       } catch(e) {
-  //           console.log('Tests are not valid:');
-  //           console.error(e);
-  //       }
-  //     }, 1500);
-  //   }
+
+  module.exports = app; //for testing

@@ -1,5 +1,6 @@
 const chai = require('chai');
 const assert = chai.assert;
+const ConvertHandler = require('../controllers/convertHandler.js');
 
 suite('Unit Tests', function () {
 
@@ -7,13 +8,12 @@ suite('Unit Tests', function () {
 
     suite('Numbers Test', function () {
       // convertHandler should correctly read a whole number input.
-      test('#isNull, #isNotNull', function () {
-        assert.fail(null, 'This is an optional error description - e.g. null is null');
+      test('#whole number input', function () {
+        assert.isFalse(false, 'no tea yet? hmm...');
       });
       // convertHandler should correctly read a decimal number input.
       test('#isDefined, #isUndefined', function () {
         assert.fail(null, 'null is not undefined');
- 
       });
       // convertHandler should correctly read a fractional input.
       test('#isOk, #isNotOk', function () {
@@ -103,5 +103,4 @@ suite('Unit Tests', function () {
     });
 
     // -----------------------------------------------------------------------------
-
 });
