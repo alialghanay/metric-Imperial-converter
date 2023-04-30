@@ -1,42 +1,37 @@
 'use strict';
-require('dotenv').config();
 
-// importing packgages
-const express = require('express');
-const routes = require('./routes/routes.js');
+const express     = require('express');
 const bodyParser  = require('body-parser');
 const expect      = require('chai').expect;
 const cors        = require('cors');
+require('dotenv').config();
 
-
-// signing variables
-const app = express();
+const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 
-// app.use
-app.use("/public", express.static(process.cwd() + "/public"));
+let app = express();
+
+app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.set
-app.set("views", "./views/pug");
-app.set("view engine", "pug");
-
-app.route("/").get((req, res) => {
-  console.log("Hello Form Homepage");
-  res.render("index");
-});
+//Index page (static HTML)
+app.route('/')
+  .get(function (req, res) {
+    res.sendFile(process.cwd() + '/views/index.html');
+  });
 
 //For FCC testing purposes
 fccTestingRoutes(app);
 
-//Routing for API
-routes(app);
-
+//Routing for API 
+apiRoutes(app);  
+    
+//404 Not Found Middleware
 app.use(function(req, res, next) {
   res.status(404)
     .type('text')
@@ -44,19 +39,21 @@ app.use(function(req, res, next) {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`app listening on Port -> ${port}`)
-    if(process.env.NODE_ENV==='test') {
-        console.log('Running Tests...');
-        setTimeout(function () {
-          try {
-            runner.run();
-          } catch(e) {
-              console.log('Tests are not valid:');
-              console.error(e);
-          }
-        }, 1500);
-      }
-  });
 
-  module.exports = app; //for testing
+//Start our server and tests!
+app.listen(port, function () {
+  console.log("Listening on port " + port);
+  if(process.env.NODE_ENV==='test') {
+    console.log('Running Tests...');
+    setTimeout(function () {
+      try {
+        runner.run();
+      } catch(e) {
+          console.log('Tests are not valid:');
+          console.error(e);
+      }
+    }, 1500);
+  }
+});
+
+module.exports = app; //for testing

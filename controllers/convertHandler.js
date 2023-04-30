@@ -1,15 +1,125 @@
-// // Regular Expression
-// const regexSyntax = /([^\w\/\.\s])|([\d\.\s]+\/[\d\.\s]+\/[\d\.\s]+)|(\/{2,})/g;
-// const regexUnit = /[^\d\.\/\s]+/i;
-// const regexNum = /[\d\.\/\s]+/;
+'use strict';
 
-// // Convert Handler Function
+const regexSyntax = /([^\w\/\.\s])|([\d\.\s]+\/[\d\.\s]+\/[\d\.\s]+)|(\/{2,})/g;
+const regexUnit = /[^\d\.\/\s]+/i;
+const regexNum = /[\d\.\/\s]+/;
+
+function ConvertHandler() {
+  
+  this.getNum = function(input) {
+    let result;
+    if(regexSyntax.test(input)) result = "invalid number";
+    else result = regexNum.test(input)? eval(input.match(regexNum)[0]) : 1;
+    return result;
+  };
+  
+  this.getUnit = function(input) {
+    let result = regexUnit.test(input)? input.match(regexUnit)[0].toLowerCase() : "";
+    return result;
+  };
+  
+  this.getReturnUnit = function(initUnit) {
+    let result;
+    switch (initUnit) {
+            case "gal":
+              result = "l";
+              break;
+            case "l":
+              result = "gal";
+              break;
+            case "kg":
+              result = "lbs";
+              break;
+            case "lbs":
+              result = "kg";
+            break;
+            case "mi":
+              result = "mi";
+              break;
+            case "km":
+              result = "km";
+              break;
+            default:
+              result = "invaild unit";
+          }
+    return result;
+  };
+
+  this.spellOutUnit = function(unit) {
+    let result;
+    switch (unit) {
+      case "gal":
+        result = "gallons";
+        break;
+      case "l":
+        result = "liters";
+        break;
+      case "kg":
+        result = "kilograms";
+        break;
+      case "lbs":
+        result = "pounds";
+      break;
+      case "mi":
+        result = "miles";
+        break;
+      case "km":
+        result = "kilometers";
+        break;
+      default:
+        result = "invaild unit";
+    }
+    return result;
+  };
+  
+  this.convert = function(initNum, initUnit) {
+    const galToL = 3.78541;
+    const lbsToKg = 0.453592;
+    const miToKm = 1.60934;
+    let result;
+    switch (initUnit) {
+      case "gal":
+        result = initNum * galToL;
+        break;
+      case "l":
+        result = initNum / galToL;
+        break;
+      case "kg":
+        result = initNum * lbsToKg;
+        break;
+      case "lbs":
+        result = initNum / lbsToKg;
+      break;
+      case "mi":
+        result = initNum * miToKm;
+
+        break;
+      case "km":
+        result = initNum / miToKm;
+        break;
+      default:
+                result = "invaild unit";
+    }
+    return result;
+  };
+  
+  this.getString = function(initNum, initUnit, returnNum, returnUnit) {
+    let result;
+    result = `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
+    return result;
+  };
+  
+}
+
+module.exports = ConvertHandler;
+
+// Convert Handler Function
 // module.exports = (input) => {
 //   if((input === undefined) || ( input.length === 0)) return "invalid input!";
 //   else if(regexSyntax.test(input)) return "invalid number";
 //   else{
 //     const output = {};
-//     output.initNum = regexNum.test(input)? eval(input.match(regexNum)[0]) : 1;
+//     initNum = regexNum.test(input)? eval(input.match(regexNum)[0]) : 1;
 //     output.initUnit = regexUnit.test(input)? input.match(regexUnit)[0].toLowerCase() : "";
 //     switch (output.initUnit) {
 //       case "gal":
@@ -49,47 +159,4 @@
 //   }
 // }
 
-function ConvertHandler() {
-  
-  this.getNum = function(input) {
-    let result;
-    
-    return result;
-  };
-  
-  this.getUnit = function(input) {
-    let result;
-    
-    return result;
-  };
-  
-  this.getReturnUnit = function(initUnit) {
-    let result;
-    
-    return result;
-  };
-
-  this.spellOutUnit = function(unit) {
-    let result;
-    
-    return result;
-  };
-  
-  this.convert = function(initNum, initUnit) {
-    const galToL = 3.78541;
-    const lbsToKg = 0.453592;
-    const miToKm = 1.60934;
-    let result;
-    
-    return result;
-  };
-  
-  this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    let result;
-    
-    return result;
-  };
-  
-}
-
-module.exports = ConvertHandler;
+// Regular Expression
