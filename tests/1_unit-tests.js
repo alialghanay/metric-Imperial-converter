@@ -1,11 +1,12 @@
 const chai = require('chai');
-let assert = chai.assert;
+const assert = chai.assert;
 const ConvertHandler = require('../controllers/convertHandler.js');
 
-let convertHandler = new ConvertHandler();
+suite('Unit Tests', function () {
 
-suite('Unit Tests', function(){
-   suite('Numbers Test', function () {
+    // -----------------------------------------------------------------------------
+
+    suite('Numbers Test', function () {
       // convertHandler should correctly read a whole number input.
       test('#whole number input', function () {
         assert.isFalse(false, 'no tea yet? hmm...');
@@ -35,4 +36,71 @@ suite('Unit Tests', function(){
 
       });
     });
+  
+    // -----------------------------------------------------------------------------
+  
+    suite('Units Test', function () {
+      // convertHandler should correctly read each valid input unit.
+      test('#equal, #notEqual', function () {
+        assert.fail(12, '12', 'Numbers are coerced into strings with ==');
+
+      });
+      // convertHandler should correctly return an error for an invalid input unit.
+      test('#strictEqual, #notStrictEqual', function () {
+        assert.fail(6, '6');
+
+      });
+      // convertHandler should return the correct return unit for each valid input unit.
+      test('#deepEqual, #notDeepEqual', function () {
+        assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+
+      });
+      // convertHandler should return the correct return unit for each valid input unit.
+      test('#deepEqual, #notDeepEqual', function () {
+        assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+
+      });
+      // convertHandler should correctly return the spelled-out string unit for each valid input unit.
+      test('#deepEqual, #notDeepEqual', function () {
+        assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+
+      });
+    });
+
+    // -----------------------------------------------------------------------------
+  
+    suite('Convert Test', function () {
+      // convertHandler should correctly convert gal to L.
+      test('#equal, #notEqual', function () {
+        assert.fail(12, '12', 'Numbers are coerced into strings with ==');
+
+      });
+      // convertHandler should correctly convert L to gal.
+      test('#strictEqual, #notStrictEqual', function () {
+        assert.fail(6, '6');
+
+      });
+      // convertHandler should correctly convert mi to km.
+      test('#deepEqual, #notDeepEqual', function () {
+        assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+
+      });
+      // convertHandler should correctly convert km to mi.
+      test('#deepEqual, #notDeepEqual', function () {
+        assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+
+      });
+      // convertHandler should correctly convert lbs to kg.
+      test('#deepEqual, #notDeepEqual', function () {
+        assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+
+      });
+      // convertHandler should correctly convert kg to lbs.
+      test('#deepEqual, #notDeepEqual', function () {
+        assert.fail({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
+
+      });
+    });
+
+    // -----------------------------------------------------------------------------
 });
