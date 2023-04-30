@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // importing packgages
 const express = require('express');
-const routes = require('./routes/routes.js');
+const routes = require('./routes/api.js');
 const bodyParser  = require('body-parser');
 const expect      = require('chai').expect;
 const cors        = require('cors');
@@ -59,8 +59,4 @@ app.listen(port, () => {
       }
   });
 
-<<<<<<< HEAD
-module.exports = app; //for testing
-=======
   module.exports = app; //for testing
->>>>>>> parent of 1f9c653 (changes many files trying fixing test problem then discoverd that it is working on glitch.com)
