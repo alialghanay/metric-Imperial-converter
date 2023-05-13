@@ -49,7 +49,7 @@ suite('Unit Tests', function () {
     // convertHandler should correctly return an error for an invalid input unit.
     test('#invalid-input', function () {
       assert.notStrictEqual(getUnit('4kkg'), 'kg', 'convertHandler should correctly return an error for an invalid input unit.');
-      assert.strictEqual(getReturnUnit('4kkg'), 'invaild unit', 'convertHandler should correctly return an error for an invalid input unit.');
+      assert.strictEqual(getReturnUnit('4kkg'), 'invalid unit', 'convertHandler should correctly return an error for an invalid input unit.');
     });
     // convertHandler should return the correct return unit for each valid input unit.
     test('#Each-valid-input-unit', function () {

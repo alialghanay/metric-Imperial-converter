@@ -89,7 +89,7 @@ suite('Functional Tests', function() {
                 .get('/api/convert')
                 .query({input: 10 + 'g'})
                 .end((req, res) => {
-                    assert.strictEqual(res.text, "invaild unit", "invalid input unit")
+                    assert.strictEqual(res.text, "invalid unit", "invalid input unit")
                     done();
                 })
         })
