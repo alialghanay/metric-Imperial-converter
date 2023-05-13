@@ -135,7 +135,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'lbs', 'getUnit function');
       assert.strictEqual(returnUnit, 'kg', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 / lbsToKg, 'convert function');
+      assert.strictEqual(returnNum, 4 * lbsToKg, 'convert function');
     });
     // convertHandler should correctly convert kg to lbs.
     test('#kgToLbs', function () {
@@ -147,7 +147,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'kg', 'getUnit function');
       assert.strictEqual(returnUnit, 'lbs', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 * lbsToKg, 'convert function');
+      assert.strictEqual(returnNum, 4 / lbsToKg, 'convert function');
     });
   });
 

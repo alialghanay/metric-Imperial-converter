@@ -10,6 +10,7 @@ const miToKm = 1.60934;
 chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
+    // Convert a valid input such as 10L: GET request to /api/convert.
     suite('GET request to /api/convert.', function() {
         // Convert a valid input such as 10L: GET request to /api/convert.
         suite('Convert valid input', function() {
@@ -82,8 +83,45 @@ suite('Functional Tests', function() {
             })
         })
         // Convert an invalid input such as 32g: GET request to /api/convert.
+        test('#invalid-input', function(done) {
+            chai.request(server)
+                .get('/api/convert')
+                .query({input: 10 + 'g'})
+                .end((req, res) => {
+                    assert.strictEqual(res.text, "invaild unit", "invalid input unit")
+                    done();
+                })
+        })
         // Convert an invalid number such as 3/7.2/4kg: GET request to /api/convert.
+        test('#invalid-number', function(done) {
+            chai.request(server)
+                .get('/api/convert')
+                .query({input: '3/7.2/4kg'})
+                .end((req, res) => {
+                    assert.strictEqual(res.text, "invalid number",'double-fraction')
+                    done();
+                })
+        })
         // Convert an invalid number AND unit such as 3/7.2/4kilomegagram: GET request to /api/convert.
+        test('#invalid-number-unit', function(done) {
+            chai.request(server)
+                .get('/api/convert')
+                .query({input: '3/7.2/4kilomegagram'})
+                .end((req, res) => {
+                    assert.strictEqual(res.text, "invalid number and unit",'invalid number and unit')
+                    done();
+                })
+        })
         // Convert with no number such as kg: GET request to /api/convert.
+        test('#No-number', function(done) {
+            chai.request(server)
+                .get('/api/convert')
+                .query({input: 'kg'})
+                .end((req, res) => {
+                    assert.strictEqual(res.body.initNum, 1, 'auto number');
+                    assert.strictEqual(res.body.initUnit, 'kg', 'unit');
+                    done();
+                })
+        })
     })
 });

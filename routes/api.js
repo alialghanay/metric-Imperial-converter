@@ -19,8 +19,9 @@ module.exports = function (app) {
         returnNum,
         returnUnit
       );
-      if (initNum === "invalid number") res.send("invalid number");
-      else if (returnUnit === "invaild unit") res.send("invaild unit");
+      if (initNum === "invalid number" && returnUnit === "invaild unit") res.send("invalid number and unit");
+      else if(initNum === "invalid number") res.send(initNum);
+      else if (returnUnit === "invaild unit") res.send(returnUnit);
       else {
         let responObject = {};
         responObject.initNum = initNum;

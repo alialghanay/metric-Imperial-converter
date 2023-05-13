@@ -49,7 +49,7 @@
 //   }
 // }
 
-const regexSyntax = /([^\w\/\.\s])|([\d\.\s]+\/[\d\.\s]+\/[\d\.\s]+)|(\/{2,})/g;
+const regexSyntax = /([^\w\/\.\s])|([\d\.\s]+\/[\d\.\s]+\/[\d\.\s]+)|(\/{2,})/;
 const regexUnit = /[^\d\.\/\s]+/i;
 const regexNum = /[\d\.\/\s]+/;
 
