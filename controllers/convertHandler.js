@@ -7,7 +7,7 @@ function ConvertHandler() {
   
   this.getNum = function(input) {
     let result;
-    if(regexSyntax.test(input)) result = "invalid number";
+    if(regexSyntax.test(input)) result = 'invalid number';
     else result = regexNum.test(input)? eval(input.match(regexNum)[0]) : 1;
     return result;
   };
@@ -39,7 +39,7 @@ function ConvertHandler() {
               result = "mi";
               break;
             default:
-              result = "invaild unit";
+              result = 'invalid unit';
           }
     return result;
   };
@@ -66,7 +66,7 @@ function ConvertHandler() {
         result = "kilometers";
         break;
       default:
-        result = "invaild unit";
+        result = 'invalid unit';
     }
     return result;
   };
@@ -97,7 +97,7 @@ function ConvertHandler() {
         result = initNum / miToKm;
         break;
       default:
-                result = "invaild unit";
+                result = 'invalid unit';
     }
     result = Math.round(result * 100000) / 100000;
     return result;
