@@ -77,6 +77,7 @@ suite('Unit Tests', function () {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
+    const delta = 0.00005;
     // convertHandler should correctly convert gal to L.
     test('#galToL', function () {
       const input = "4gal";
@@ -87,7 +88,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'gal', 'getUnit function');
       assert.strictEqual(returnUnit, 'L', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 * galToL, 'convert function');
+      assert.approximately(returnNum, 4 * galToL, delta, 'convert function');
     });
     // convertHandler should correctly convert L to gal.
     test('#LToGal', function () {
@@ -99,7 +100,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'L', 'getUnit function');
       assert.strictEqual(returnUnit, 'gal', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 / galToL, 'convert function');
+      assert.approximately(returnNum, 4 / galToL, delta, 'convert function');
     });
     // convertHandler should correctly convert mi to km.
     test('#miToKm', function () {
@@ -111,7 +112,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'mi', 'getUnit function');
       assert.strictEqual(returnUnit, 'km', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 * miToKm, 'convert function');
+      assert.approximately(returnNum, 4 * miToKm, delta, 'convert function');
     });
     // convertHandler should correctly convert km to mi.
     test('#kmToMi', function () {
@@ -123,7 +124,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'km', 'getUnit function');
       assert.strictEqual(returnUnit, 'mi', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 / miToKm, 'convert function');
+      assert.approximately(returnNum, 4 / miToKm, delta, 'convert function');
     });
     // convertHandler should correctly convert lbs to kg.
     test('#lbsToKg', function () {
@@ -135,7 +136,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'lbs', 'getUnit function');
       assert.strictEqual(returnUnit, 'kg', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 * lbsToKg, 'convert function');
+      assert.approximately(returnNum, 4 * lbsToKg, delta, 'convert function');
     });
     // convertHandler should correctly convert kg to lbs.
     test('#kgToLbs', function () {
@@ -147,7 +148,7 @@ suite('Unit Tests', function () {
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'kg', 'getUnit function');
       assert.strictEqual(returnUnit, 'lbs', 'getReturnUnit function');
-      assert.strictEqual(returnNum, 4 / lbsToKg, 'convert function');
+      assert.approximately(returnNum, 4 / lbsToKg, delta, 'convert function');
     });
   });
 

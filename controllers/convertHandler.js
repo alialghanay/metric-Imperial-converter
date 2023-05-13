@@ -14,8 +14,7 @@ function ConvertHandler() {
   
   this.getUnit = function(input) {
     let result = regexUnit.test(input)? input.match(regexUnit)[0].toLowerCase() : "";
-    if (result === "l") result = "L";
-    return result;
+    return (result === "l")? result.toUpperCase() : result;
   };
   
   this.getReturnUnit = function(initUnit) {
@@ -100,6 +99,7 @@ function ConvertHandler() {
       default:
                 result = "invaild unit";
     }
+    result = Math.round(result * 100000) / 100000;
     return result;
   };
   

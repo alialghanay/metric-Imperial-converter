@@ -15,13 +15,14 @@ suite('Functional Tests', function() {
         // Convert a valid input such as 10L: GET request to /api/convert.
         suite('Convert valid input', function() {
             const initnum = 10;
+            const delta = 0.00005;
             // Converting Liters
             test('#Liters', function(done) {
                 chai.request(server)
                     .get('/api/convert/')
                     .query({input: initnum + 'L'})
                     .end((req, res) => {
-                        assert.strictEqual(res.body.returnNum, initnum / galToL, 'converts numbers ok');
+                        assert.approximately(res.body.returnNum, initnum / galToL, delta, 'converts numbers ok');
                         assert.strictEqual(res.body.returnUnit, 'gal', 'converts Units ok');
                         done();
                     })
@@ -32,7 +33,7 @@ suite('Functional Tests', function() {
                     .get('/api/convert/')
                     .query({input: initnum + 'gal'})
                     .end((req, res) => {
-                        assert.strictEqual(res.body.returnNum, initnum * galToL, 'converts numbers ok');
+                        assert.approximately(res.body.returnNum, initnum * galToL, delta, 'converts numbers ok');
                         assert.strictEqual(res.body.returnUnit, 'L', 'converts Units ok');
                         done();
                     })
@@ -43,7 +44,7 @@ suite('Functional Tests', function() {
                     .get('/api/convert/')
                     .query({input: initnum + 'kg'})
                     .end((req, res) => {
-                        assert.strictEqual(res.body.returnNum, initnum / lbsToKg, 'converts numbers ok');
+                        assert.approximately(res.body.returnNum, initnum / lbsToKg, delta, 'converts numbers ok');
                         assert.strictEqual(res.body.returnUnit, 'lbs', 'converts Units ok');
                         done();
                     })
@@ -54,7 +55,7 @@ suite('Functional Tests', function() {
                     .get('/api/convert/')
                     .query({input: initnum + 'lbs'})
                     .end((req, res) => {
-                        assert.strictEqual(res.body.returnNum, initnum * lbsToKg, 'converts numbers ok');
+                        assert.approximately(res.body.returnNum, initnum * lbsToKg, delta, 'converts numbers ok');
                         assert.strictEqual(res.body.returnUnit, 'kg', 'converts Units ok');
                         done();
                     })
@@ -65,7 +66,7 @@ suite('Functional Tests', function() {
                     .get('/api/convert/')
                     .query({input: initnum + 'mi'})
                     .end((req, res) => {
-                        assert.strictEqual(res.body.returnNum, initnum * miToKm, 'converts numbers ok');
+                        assert.approximately(res.body.returnNum, initnum * miToKm, delta, 'converts numbers ok');
                         assert.strictEqual(res.body.returnUnit, 'km', 'converts Units ok');
                         done();
                     })
@@ -76,7 +77,7 @@ suite('Functional Tests', function() {
                     .get('/api/convert/')
                     .query({input: initnum + 'km'})
                     .end((req, res) => {
-                        assert.strictEqual(res.body.returnNum, initnum / miToKm, 'converts numbers ok');
+                        assert.approximately(res.body.returnNum, initnum / miToKm, delta, 'converts numbers ok');
                         assert.strictEqual(res.body.returnUnit, 'mi', 'converts Units ok');
                         done();
                     })
