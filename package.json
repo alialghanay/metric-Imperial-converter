@@ -2,7 +2,7 @@
   "name": "metric-imperial-converter",
   "version": "1.0.0",
   "description": "FCC Quality Assurance Metric/Imperial Converter project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
