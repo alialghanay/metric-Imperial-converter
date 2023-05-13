@@ -54,7 +54,7 @@ suite('Unit Tests', function () {
     // convertHandler should return the correct return unit for each valid input unit.
     test('#Each-valid-input-unit', function () {
       assert.strictEqual(getUnit('kg'),"kg", " convertHandler can not read kg");
-      assert.strictEqual(getUnit('l'),"l", "convertHandler can not read l");
+      assert.strictEqual(getUnit('L'),"L", "convertHandler can not read l");
       assert.strictEqual(getUnit('gal'),"gal", "convertHandler can not read gal");
       assert.strictEqual(getUnit('lbs'),"lbs", "convertHandler can not read lbs");
       assert.strictEqual(getUnit('mi'),"mi", "convertHandler can not read mi");
@@ -63,7 +63,7 @@ suite('Unit Tests', function () {
     // convertHandler should correctly return the spelled-out string unit for each valid input unit.
     test('#spelled-out', function () {
       assert.strictEqual(spellOutUnit('kg'),"kilograms", " convertHandler can not spell Out Unit kg");
-      assert.strictEqual(spellOutUnit('l'),"liters", "convertHandler can not spell Out Unit l");
+      assert.strictEqual(spellOutUnit('L'),"liters", "convertHandler can not spell Out Unit l");
       assert.strictEqual(spellOutUnit('gal'),"gallons", "convertHandler can not spell Out Unit gal");
       assert.strictEqual(spellOutUnit('lbs'),"pounds", "convertHandler can not spell Out Unit lbs");
       assert.strictEqual(spellOutUnit('mi'),"miles", "convertHandler can not spell Out Unit mi");
@@ -86,7 +86,7 @@ suite('Unit Tests', function () {
       let returnNum = convert(initNum, initUnit);
       assert.strictEqual(initNum, 4, 'getNum function');
       assert.strictEqual(initUnit, 'gal', 'getUnit function');
-      assert.strictEqual(returnUnit, 'l', 'getReturnUnit function');
+      assert.strictEqual(returnUnit, 'L', 'getReturnUnit function');
       assert.strictEqual(returnNum, 4 * galToL, 'convert function');
     });
     // convertHandler should correctly convert L to gal.
@@ -97,7 +97,7 @@ suite('Unit Tests', function () {
       let returnUnit = getReturnUnit(initUnit);
       let returnNum = convert(initNum, initUnit);
       assert.strictEqual(initNum, 4, 'getNum function');
-      assert.strictEqual(initUnit, 'l', 'getUnit function');
+      assert.strictEqual(initUnit, 'L', 'getUnit function');
       assert.strictEqual(returnUnit, 'gal', 'getReturnUnit function');
       assert.strictEqual(returnNum, 4 / galToL, 'convert function');
     });

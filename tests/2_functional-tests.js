@@ -33,7 +33,7 @@ suite('Functional Tests', function() {
                     .query({input: initnum + 'gal'})
                     .end((req, res) => {
                         assert.strictEqual(res.body.returnNum, initnum * galToL, 'converts numbers ok');
-                        assert.strictEqual(res.body.returnUnit, 'l', 'converts Units ok');
+                        assert.strictEqual(res.body.returnUnit, 'L', 'converts Units ok');
                         done();
                     })
             })
